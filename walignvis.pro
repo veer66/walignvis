@@ -14,10 +14,12 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     visualizer.cpp \
     alignment.cpp \
-    alignmentreader.cpp
+    alignmentreader.cpp \
+    aboutdialog.cpp
 
 HEADERS  += mainwindow.h \
     visualizer.h \
     alignment.h \
-    alignmentreader.h
+    alignmentreader.h \
+    aboutdialog.h
 
