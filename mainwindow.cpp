@@ -5,6 +5,7 @@
 MainWindow::MainWindow(QVector<Alignment*> *alignments, QWidget *parent)
     : QWidget(parent), alignments(alignments)
 {
+    setWindowTitle("wAlignVis 1.0");
     //Alignment *alignment = (*alignments)[0];
     //visualizer = new Visualizer(alignment);
     sentPairTreeView = new QTreeView();
