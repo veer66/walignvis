@@ -15,11 +15,13 @@ SOURCES += main.cpp\
     visualizer.cpp \
     alignment.cpp \
     alignmentreader.cpp \
-    aboutdialog.cpp
+    aboutdialog.cpp \
+    wordref.cpp
 
 HEADERS  += mainwindow.h \
     visualizer.h \
     alignment.h \
     alignmentreader.h \
-    aboutdialog.h
+    aboutdialog.h \
+    wordref.h
 
