@@ -76,8 +76,22 @@ void Visualizer::putLinks(QMap<int, QVector<int> > map,
 
 QRectF Visualizer::putWord(QString word, float x, float y, bool isOnTop, int pos, QMap<int, QVector<int> > map) {
     QGraphicsTextItem *wordItem = new QGraphicsTextItem(QString(word));
-    if(selWordRef.isActive() && selWordRef.isOnTop() == isOnTop && selWordRef.getPos() == pos) {
-        wordItem->setDefaultTextColor(QColor("red"));
+    if(selWordRef.isActive()) {
+        if(selWordRef.isOnTop() == isOnTop) {
+            if(selWordRef.getPos() == pos) {
+                wordItem->setDefaultTextColor(QColor("red"));
+            }
+        } else {
+            QMapIterator<int, QVector<int> > i(map);
+            while(i.hasNext()) {
+                i.next();
+                qDebug() << i.key() << " --- " << selWordRef.getPos() - 1;
+            }
+            QVector<int> targets = map[selWordRef.getPos() - 1];
+            if(targets.contains(pos)) {
+                wordItem->setDefaultTextColor(QColor("orange"));
+            }
+        }
     }
     wordItem->setFont(font);
     wordItem->setPos(x, y);
@@ -103,6 +117,7 @@ QVector<QPointF> *Visualizer::putText(QStringList wordList, float x, float y, bo
     points->push_back(findPointForConnection(rect, x, y, isOnTop));
     x += rect.width() + space;   
     QStringListIterator i(wordList);    
+    pos++;
     while(i.hasNext()) {
         QString word = i.next();
         QRectF rect = putWord(word, x, y, isOnTop, pos, map);
